@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Prepends "<branch-name>: " to the commit message.
+
+MESSAGE_FILE="$1"
+SOURCE="$2"
+
+case "$SOURCE" in
+  merge|squash|commit) exit 0 ;;
+esac
+
+# Detached HEAD — no branch to use.
+BRANCH="$(git symbolic-ref --short HEAD 2>/dev/null)" || exit 0
+
+case "$BRANCH" in
+  master|main|develop) exit 0 ;;
+esac
+
+FIRST_LINE="$(head -n1 "$MESSAGE_FILE")"
+
+# Already prefixed
+case "$FIRST_LINE" in
+  "$BRANCH: "*) exit 0 ;;
+esac
+
+case "$FIRST_LINE" in
+  "fixup! "*|"squash! "*|"amend! "*) exit 0 ;;
+esac
+
+printf '%s: %s' "$BRANCH" "$(cat "$MESSAGE_FILE")" > "$MESSAGE_FILE"

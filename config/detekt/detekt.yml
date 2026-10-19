@@ -1,0 +1,62 @@
+complexity:
+  LongMethod:
+    ignoreAnnotated: ['Composable']
+
+naming:
+  TopLevelPropertyNaming:
+    constantPattern: '([A-Z][_A-Z0-9]*)|([A-Z][A-Za-z0-9]*)'
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
+    excludes:
+      - '**/iosMain/**'
+      - '**/test/**'
+      - '**/androidTest/**'
+      - '**/commonTest/**'
+      - '**/jvmTest/**'
+      - '**/androidUnitTest/**'
+      - '**/androidInstrumentedTest/**'
+      - '**/androidHostTest/**'
+      - '**/androidDeviceTest/**'
+      - '**/jsTest/**'
+      - '**/iosTest/**'
+      - '**/macosTest/**'
+      - '**/macosArm64Test/**'
+  MatchingDeclarationName:
+    multiplatformTargets:
+      - ios
+      - android
+      - js
+      - jvm
+      - native
+      - iosArm64
+      - iosX64
+      - iosSimulatorArm64
+      - macos
+      - macosArm64
+      - macosX64
+      - apple
+      - mingwX64
+      - linuxX64
+
+style:
+  MaxLineLength:
+    active: false
+  NewLineAtEndOfFile:
+    active: false
+
+ktlint:
+  autoCorrect: false
+  NoEmptyFile:
+    active: false
+  BackingPropertyNaming:
+    active: false
+  PropertyName:
+    active: false
+  ClassSignature:
+    forceMultilineWhenParameterCountGreaterOrEqualThan: '1'
+  FunctionSignature:
+    forceMultilineWhenParameterCountGreaterOrEqualThan: 2
+
+Compose:
+  DefaultsVisibility:
+    active: false

@@ -1,0 +1,154 @@
+# --- Личные рабочие файлы: в репозиторий не попадают ---
+# План, прогресс, заметки, сырые ответы Ozon, личный профиль питания
+/.local/
+
+# --- AI-агенты: только локальные файлы и настройки ---
+# Инструкции, правила, настройки, MCP-конфиги и история агентов в git не попадают:
+# каждый, кто клонирует проект, сам решает, какими агентами пользоваться.
+# Исключение: skill самого проекта (каталог skills/ в корне) — это код проекта, он в git.
+# Claude Code
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+/.mcp.json
+# Общие инструкции агентов (AGENTS.md читают Codex, OpenCode, Copilot, Cursor и другие)
+AGENTS.md
+AGENTS.override.md
+AGENT.md
+.agents/
+.agent/
+# OpenAI Codex
+.codex/
+# Gemini CLI, Gemini в Android Studio, Qwen Code
+.gemini/
+GEMINI.md
+.geminiignore
+.aiexclude
+.qwen/
+QWEN.md
+# JetBrains AI Assistant и Junie
+.aiassistant/
+.aiignore
+.junie/
+# GitHub Copilot
+/.github/copilot-instructions.md
+/.github/instructions/
+/.github/prompts/
+/.github/chatmodes/
+/.github/agents/
+/.github/skills/
+/.github/workflows/copilot-setup-steps.yml
+# Cursor
+.cursor/
+.cursorrules
+.cursorignore
+.cursorindexingignore
+# Windsurf
+.windsurf/
+.windsurfrules
+.codeiumignore
+# OpenCode
+.opencode/
+/opencode.json
+/opencode.jsonc
+# Cline, Roo Code, Kilo Code, Continue
+.clinerules
+.clineignore
+.roo/
+.roomodes
+.rooignore
+.kilocode/
+.kilocodemodes
+.continue/
+.continueignore
+.continuerc.json
+# Aider
+.aider*
+# Amazon Q, Kiro
+.amazonq/
+.kiro/
+# Zed, Goose, Crush, Augment, Trae, Factory, Sourcegraph Cody, SpecStory
+/.rules
+.goosehints
+.crush/
+CRUSH.md
+.augment/
+.augment-guidelines
+.augmentignore
+.trae/
+.factory/
+.cody/
+.specstory/
+
+# --- Сборка (Gradle, Kotlin) ---
+.gradle/
+build/
+# Пакеты исходников с именем build остаются в git
+!**/src/**/build/
+# Wrapper jar коммитится, даже если глобально игнорируется *.jar
+!gradle/wrapper/gradle-wrapper.jar
+.kotlin/
+local.properties
+/bin/
+/dist/
+# Дампы памяти JVM: могут содержать данные ответов Ozon
+*.hprof
+
+# --- Android ---
+captures/
+# Каталоги с именем captures внутри исходников остаются в git
+!**/src/**/captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# --- Xcode / iOS ---
+xcuserdata/
+*.xcuserstate
+Pods/
+# Из .xcodeproj в git попадают только общие файлы проекта
+**/*.xcodeproj/*
+!**/*.xcodeproj/project.pbxproj
+!**/*.xcodeproj/xcshareddata/
+!**/*.xcodeproj/project.xcworkspace/
+!**/*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# --- Временные файлы и папки ---
+tmp/
+temp/
+# Пакеты и ресурсы с такими именами внутри исходников остаются в git
+!**/src/**/tmp/
+!**/src/**/temp/
+*.tmp
+*.temp
+*.bak
+*.log
+*.swp
+*.swo
+*~
+
+# --- macOS ---
+.DS_Store
+._*
+
+# --- Редакторы ---
+.vscode/
+.idea/
+.fleet/
+*.iml
+
+# --- Секреты ---
+.env
+.env.*
+!.env.example
+# Ключи подписи и конфиги сервисов
+*.jks
+*.keystore
+*.p12
+keystore.properties
+signing.properties
+google-services.json
