@@ -1,11 +1,10 @@
-package com.nahob.sevastyan.grocery.assistant.buildlogic.kmp
+package com.nahob.sevastyan.grocery.assistant.buildlogic.multiplatform
 
 import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import com.nahob.sevastyan.grocery.assistant.buildlogic.allowExpectActualClasses
 import com.nahob.sevastyan.grocery.assistant.buildlogic.enableStrictWarnings
-import com.nahob.sevastyan.grocery.assistant.buildlogic.installGitHooksBeforeKotlinCompilation
-import com.nahob.sevastyan.grocery.assistant.buildlogic.libs
-import com.nahob.sevastyan.grocery.assistant.buildlogic.versionInt
+import com.nahob.sevastyan.grocery.assistant.buildlogic.requireVersionAsInt
+import com.nahob.sevastyan.grocery.assistant.buildlogic.versionCatalog
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -19,14 +18,14 @@ class KotlinMultiplatformMobileConventionPlugin : Plugin<Project> {
         pluginManager.apply("com.nahob.sevastyan.grocery.assistant.detekt")
 
         extensions.configure<KotlinMultiplatformExtension> {
-            jvmToolchain(libs.versionInt("jvmToolchain"))
+            jvmToolchain(versionCatalog.requireVersionAsInt("jvmToolchain"))
 
             iosArm64()
             iosSimulatorArm64()
 
             targets.withType(KotlinMultiplatformAndroidLibraryTarget::class.java).configureEach {
-                compileSdk = libs.versionInt("android-compileSdk")
-                minSdk = libs.versionInt("android-minSdk")
+                compileSdk = versionCatalog.requireVersionAsInt("android-compileSdk")
+                minSdk = versionCatalog.requireVersionAsInt("android-minSdk")
 
                 compilerOptions {
                     jvmTarget.set(JvmTarget.JVM_11)
@@ -38,7 +37,5 @@ class KotlinMultiplatformMobileConventionPlugin : Plugin<Project> {
                 allowExpectActualClasses()
             }
         }
-
-        installGitHooksBeforeKotlinCompilation()
     }
 }
