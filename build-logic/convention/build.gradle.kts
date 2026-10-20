@@ -33,15 +33,19 @@ gradlePlugin {
         }
         register("kotlinMultiplatformMobile") {
             id = "com.nahob.sevastyan.grocery.assistant.kotlin.multiplatform.mobile"
-            implementationClass = "com.nahob.sevastyan.grocery.assistant.buildlogic.kmp.KotlinMultiplatformMobileConventionPlugin"
+            implementationClass = "com.nahob.sevastyan.grocery.assistant.buildlogic.multiplatform.KotlinMultiplatformMobileConventionPlugin"
         }
         register("composeMultiplatform") {
             id = "com.nahob.sevastyan.grocery.assistant.compose.multiplatform"
-            implementationClass = "com.nahob.sevastyan.grocery.assistant.buildlogic.kmp.ComposeMultiplatformConventionPlugin"
+            implementationClass = "com.nahob.sevastyan.grocery.assistant.buildlogic.multiplatform.ComposeMultiplatformConventionPlugin"
+        }
+        register("mobileFeature") {
+            id = "com.nahob.sevastyan.grocery.assistant.mobile.feature"
+            implementationClass = "com.nahob.sevastyan.grocery.assistant.buildlogic.multiplatform.MobileFeatureConventionPlugin"
         }
         register("kotlinMultiplatformCore") {
             id = "com.nahob.sevastyan.grocery.assistant.kotlin.multiplatform.core"
-            implementationClass = "com.nahob.sevastyan.grocery.assistant.buildlogic.kmp.KotlinMultiplatformCoreConventionPlugin"
+            implementationClass = "com.nahob.sevastyan.grocery.assistant.buildlogic.multiplatform.KotlinMultiplatformCoreConventionPlugin"
         }
         register("kotlinJvmLibrary") {
             id = "com.nahob.sevastyan.grocery.assistant.kotlin.jvm.library"

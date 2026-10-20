@@ -32,6 +32,11 @@ dependencyResolutionManagement {
 
 include(":mobile:androidApp")
 include(":mobile:shared")
+include(":mobile:core:network")
+include(":mobile:core:notifications")
+include(":mobile:feature:sessions")
+include(":mobile:feature:memory")
+include(":mobile:feature:settings")
 include(":core")
 include(":server:app")
 include(":server:mcp")

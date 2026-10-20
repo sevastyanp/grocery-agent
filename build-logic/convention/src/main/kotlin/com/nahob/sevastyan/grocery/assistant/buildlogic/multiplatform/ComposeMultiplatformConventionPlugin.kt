@@ -1,8 +1,8 @@
-package com.nahob.sevastyan.grocery.assistant.buildlogic.kmp
+package com.nahob.sevastyan.grocery.assistant.buildlogic.multiplatform
 
 import com.nahob.sevastyan.grocery.assistant.buildlogic.allowWarningsInSharedNativeMetadata
-import com.nahob.sevastyan.grocery.assistant.buildlogic.library
-import com.nahob.sevastyan.grocery.assistant.buildlogic.libs
+import com.nahob.sevastyan.grocery.assistant.buildlogic.requireLibrary
+import com.nahob.sevastyan.grocery.assistant.buildlogic.versionCatalog
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -16,10 +16,9 @@ class ComposeMultiplatformConventionPlugin : Plugin<Project> {
 
         extensions.configure<KotlinMultiplatformExtension> {
             sourceSets.getByName("commonMain").dependencies {
-                // runtime and ui types (@Composable, Modifier) are part of the public API
-                api(libs.library("compose-multiplatform-runtime"))
-                implementation(libs.library("compose-multiplatform-foundation"))
-                api(libs.library("compose-multiplatform-ui"))
+                api(versionCatalog.requireLibrary("compose-multiplatform-runtime"))
+                implementation(versionCatalog.requireLibrary("compose-multiplatform-foundation"))
+                api(versionCatalog.requireLibrary("compose-multiplatform-ui"))
             }
 
             allowWarningsInSharedNativeMetadata()

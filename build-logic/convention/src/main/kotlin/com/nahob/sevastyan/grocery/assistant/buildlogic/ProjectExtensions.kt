@@ -5,28 +5,18 @@ import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 import java.io.File
 
-private const val INSTALL_GIT_HOOKS_PATH = ":installGitHooks"
-
-internal val Project.libs: VersionCatalog
+internal val Project.versionCatalog: VersionCatalog
     get() = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
-internal fun VersionCatalog.versionInt(alias: String): Int =
+internal fun VersionCatalog.requireVersionAsInt(alias: String): Int =
     findVersion(alias).get().requiredVersion.toInt()
 
-internal fun VersionCatalog.library(alias: String): MinimalExternalModuleDependency =
+internal fun VersionCatalog.requireLibrary(alias: String): MinimalExternalModuleDependency =
     findLibrary(alias).get().get()
 
-// Builds from the command line install the hooks too, not only IDE sync
-internal fun Project.installGitHooksBeforeKotlinCompilation() {
-    tasks.withType(KotlinCompilationTask::class.java).configureEach {
-        dependsOn(INSTALL_GIT_HOOKS_PATH)
-    }
-}
-
-internal fun Project.gitStagedKotlinFiles(): List<File> =
+internal fun Project.findGitStagedKotlinFiles(): List<File> =
     providers.exec {
         commandLine("git", "--no-pager", "diff", "--name-only", "--cached", "--diff-filter=ACMR")
     }.standardOutput.asText.get()

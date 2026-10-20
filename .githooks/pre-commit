@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Nothing to check when the commit touches no Kotlin sources
 if ! git diff --cached --name-only --diff-filter=ACMR | grep -qE '\.kts?$'; then
   exit 0
 fi
