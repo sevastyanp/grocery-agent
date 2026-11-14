@@ -10,15 +10,12 @@ internal fun KotlinCommonCompilerToolOptions.enableStrictWarnings() {
     extraWarnings.set(true)
 }
 
-// Expect/actual classes are Beta and the compiler warns about each one;
-// with allWarningsAsErrors that warning would fail the build.
+// Workaround: expect/actual classes are Beta and warn under allWarningsAsErrors
 internal fun KotlinCommonCompilerToolOptions.allowExpectActualClasses() {
     freeCompilerArgs.add("-Xexpect-actual-classes")
 }
 
-// CMP-8498: Compose Multiplatform ships org.jetbrains.* forks next to
-// androidx.* KMP artifacts with the same klib unique_name; the loader
-// warning cannot be suppressed on its own (KT-76785).
+// Workaround for CMP-8498 (KT-76785), remove when fixed
 internal fun KotlinMultiplatformExtension.allowWarningsInSharedNativeMetadata() {
     targets.withType(KotlinMetadataTarget::class.java).configureEach {
         compilations.withType(KotlinSharedNativeCompilation::class.java).configureEach {
